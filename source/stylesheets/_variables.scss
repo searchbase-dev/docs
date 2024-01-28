@@ -23,34 +23,33 @@ under the License.
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #2E3336 !default;
-$examples-bg: #2E3336 !default;
-$code-bg: #1E2224 !default;
-$code-annotation-bg: #191D1F !default;
-$nav-subitem-bg: #1E2224 !default;
-$nav-active-bg: #0F75D4 !default;
-$nav-active-parent-bg: #1E2224 !default; // parent links of the current section
-$lang-select-border: #000 !default;
-$lang-select-bg: #1E2224 !default;
-$lang-select-active-bg: $examples-bg !default; // feel free to change this to blue or something
-$lang-select-pressed-bg: #111 !default; // color of language tab bg when mouse is pressed
-$main-bg: #F3F7F9 !default;
-$aside-notice-bg: #8fbcd4 !default;
-$aside-warning-bg: #c97a7e !default;
-$aside-success-bg: #6ac174 !default;
-$search-notice-bg: #c97a7e !default;
+$nav-bg: #071126 !default; // Darkest color for main navigation background
+$examples-bg: #071126 !default; // Darkest color for examples background
+$nav-subitem-bg: #422C73 !default; // Dark purple for navigation sub-items
+$nav-active-parent-bg: #422C73 !default; // Dark purple for parent links of the current section
+$lang-select-border: #071126 !default; // Darkest color for language select border
+$lang-select-bg: #422C73 !default; // Dark purple for language select background
+$lang-select-active-bg: #7845BF !default; // Intermediate purple for active language selection
+$lang-select-pressed-bg: #071126 !default; // Darkest color for pressed language tab
+$main-bg: #F3F7F9 !default; // Maintaining this for main content area for readability
+$aside-notice-bg: #9B85C2 !default; // Intermediate purple for notices
+$aside-warning-bg: #422C73 !default; // Dark purple for warnings
+$aside-success-bg: #6ac174 !default; // Keeping a green hue for success messages for standard UX patterns
+$search-notice-bg: #422C73 !default; // Dark purple for search notices
+$code-bg: #2B2F3A !default; // Use the darkest color for the code blocks background for more darkness
+$code-annotation-bg: #071126 !default; // Darkest blue for code annotations, for less brightness
+$nav-active-bg: #422C73 !default; // Dark purple for active navigation items to reduce brightness
 
 
 // TEXT COLORS
 ////////////////////
-$main-text: #333 !default; // main content text color
-$nav-text: #fff !default;
-$nav-active-text: #fff !default;
-$nav-active-parent-text: #fff !default; // parent links of the current section
-$lang-select-text: #fff !default; // color of unselected language tab text
-$lang-select-active-text: #fff !default; // color of selected language tab text
-$lang-select-pressed-text: #fff !default; // color of language tab text when mouse is pressed
-
+$main-text: #333 !default; // Keeping main content text color dark for contrast with light main background
+$nav-text: #fff !default; // White text for navigation on dark background
+$nav-active-text: #fff !default; // White text for active navigation items
+$nav-active-parent-text: #fff !default; // White text for parent links of the current section
+$lang-select-text: #fff !default; // White text for unselected language tabs
+$lang-select-active-text: #fff !default; // White text for selected language tabs
+$lang-select-pressed-text: #fff !default; // White text for pressed language tabs
 
 // SIZES
 ////////////////////
