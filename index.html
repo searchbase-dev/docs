@@ -1,0 +1,460 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta
+            name="description"
+            content="Searchbase API documentation provides comprehensive guides and interactive examples to help you integrate powerful search functionalities in your applications."
+        >
+    <title>Searchbase API Reference</title>
+
+    <style media="screen">
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s, .highlight .sa, .highlight .dl {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf, .highlight .fm {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv, .highlight .vm {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #f92672;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <style media="print">
+      * {
+        -webkit-transition:none!important;
+        transition:none!important;
+      }
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #586e75;
+}
+.highlight .err {
+  color: #002b36;
+  background-color: #dc322f;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+  color: #657b83;
+}
+.highlight .cp {
+  color: #b58900;
+}
+.highlight .nt {
+  color: #b58900;
+}
+.highlight .o, .highlight .ow {
+  color: #93a1a1;
+}
+.highlight .p, .highlight .pi {
+  color: #93a1a1;
+}
+.highlight .gi {
+  color: #859900;
+}
+.highlight .gd {
+  color: #dc322f;
+}
+.highlight .gh {
+  color: #268bd2;
+  background-color: #002b36;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #6c71c4;
+}
+.highlight .kc {
+  color: #cb4b16;
+}
+.highlight .kt {
+  color: #cb4b16;
+}
+.highlight .kd {
+  color: #cb4b16;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #859900;
+}
+.highlight .sa {
+  color: #6c71c4;
+}
+.highlight .sr {
+  color: #2aa198;
+}
+.highlight .si {
+  color: #d33682;
+}
+.highlight .se {
+  color: #d33682;
+}
+.highlight .nn {
+  color: #b58900;
+}
+.highlight .nc {
+  color: #b58900;
+}
+.highlight .no {
+  color: #b58900;
+}
+.highlight .na {
+  color: #268bd2;
+}
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: #859900;
+}
+.highlight .ss {
+  color: #859900;
+}
+    </style>
+    <link href="stylesheets/screen-03918fdd.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-966d6edc.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all-b12a2749.js"></script>
+
+    <script>
+      $(function() { setupCodeCopy(); });
+    </script>
+  </head>
+
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar-cad8cdcb.png" alt="" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo-a19b8fb8.png" class="logo" alt="" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="ruby">ruby</a>
+              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="javascript">javascript</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#obtaining-your-api-token" class="toc-h2 toc-link" data-title="Obtaining Your API Token">Obtaining Your API Token</a>
+                  </li>
+                  <li>
+                    <a href="#using-the-api-token" class="toc-h2 toc-link" data-title="Using the API Token">Using the API Token</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#search-endpoint" class="toc-h1 toc-link" data-title="Search Endpoint">Search Endpoint</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#making-a-search-request" class="toc-h2 toc-link" data-title="Making a Search Request">Making a Search Request</a>
+                  </li>
+                  <li>
+                    <a href="#response-structure" class="toc-h2 toc-link" data-title="Response Structure">Response Structure</a>
+                  </li>
+              </ul>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='https://app.searchbase.dev/signup'>Sign Up for a Developer Key</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>Welcome to the Searchbase API documentation. Here, you will find all the information needed to integrate our powerful search functionalities into your applications. Our API supports a wide range of search capabilities, including full-text and semantic searches, to provide flexible and efficient search experiences.</p>
+
+<p>This documentation is intended for developers looking to integrate Searchbase&#39;s search capabilities into their applications and covers everything from authentication to making complex search queries.</p>
+<h1 id='authentication'>Authentication</h1><h2 id='obtaining-your-api-token'>Obtaining Your API Token</h2>
+<p>Before you can start using the Searchbase API, you need to obtain an API token. This token is necessary for all your API requests to be authenticated and authorized.</p>
+<h3 id='steps-to-obtain-an-api-token'>Steps to Obtain an API Token</h3>
+<ol>
+<li><a href="https://app.searchbase.dev/signup">Sign up for a developer account</a></li>
+<li>Once logged in, navigate to the API section.</li>
+<li>Generate a new API token from the dashboard.</li>
+</ol>
+
+<p>Keep your API token secure and ensure it is not exposed publicly in your applications.</p>
+<h2 id='using-the-api-token'>Using the API Token</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.searchbase.dev/search"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"x-searchbase-token: YourAPITokenHere"</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{...}'</span>
+</code></pre></div>
+<p>To authenticate your API requests, include your API token in the request headers as follows:</p>
+
+<p>Replace <code>YourAPITokenHere</code> with your actual API token.</p>
+<h1 id='search-endpoint'>Search Endpoint</h1>
+<p>The <code>/search</code> endpoint is the primary way to perform searches within your indexed data. This section covers the endpoint&#39;s usage, including request structure, available filters, and response handling.</p>
+<h2 id='making-a-search-request'>Making a Search Request</h2><div class="highlight"><pre class="highlight javascript"><code><span class="kd">const</span> <span class="nx">fetch</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">node-fetch</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">query</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">index</span><span class="p">:</span> <span class="dl">'</span><span class="s1">products</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">filters</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="na">field</span><span class="p">:</span> <span class="dl">'</span><span class="s1">category</span><span class="dl">'</span><span class="p">,</span> <span class="na">op</span><span class="p">:</span> <span class="dl">'</span><span class="s1">EQUAL</span><span class="dl">'</span><span class="p">,</span> <span class="na">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">electronics</span><span class="dl">'</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">field</span><span class="p">:</span> <span class="dl">'</span><span class="s1">price</span><span class="dl">'</span><span class="p">,</span> <span class="na">op</span><span class="p">:</span> <span class="dl">'</span><span class="s1">GTE</span><span class="dl">'</span><span class="p">,</span> <span class="na">value</span><span class="p">:</span> <span class="mi">100</span> <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="na">select</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">price</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">description</span><span class="dl">'</span><span class="p">],</span>
+  <span class="na">limit</span><span class="p">:</span> <span class="mi">10</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">x-searchbase-token</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">YourAPITokenHere</span><span class="dl">'</span>
+<span class="p">};</span>
+
+<span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.searchbase.dev/search</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span><span class="p">,</span>
+  <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="na">query</span><span class="p">:</span> <span class="nx">query</span> <span class="p">})</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Error:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">));</span>
+</code></pre></div><h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://api.searchbase.dev/search</code></p>
+<h3 id='request-headers'>Request Headers</h3>
+<ul>
+<li><code>Content-Type</code>: <code>application/json</code></li>
+<li><code>x-searchbase-token</code>: <code>&lt;Your API token&gt;</code></li>
+</ul>
+<h3 id='request-body-structure'>Request Body Structure</h3>
+<p>The body of a search request includes the following parameters:</p>
+
+<ul>
+<li><code>index</code>: Name of the index to search.</li>
+<li><code>filters</code>: (Optional) Array of filter objects to refine the search.</li>
+<li><code>select</code>: (Optional) Fields to be included in the search results.</li>
+<li><code>limit</code>: (Optional) Maximum number of results to return.</li>
+<li><code>offset</code>: (Optional) Number of results to skip (for pagination).</li>
+</ul>
+<h3 id='filter-object'>Filter Object</h3>
+<p>Each filter object within the <code>filters</code> array can have the following properties:</p>
+
+<ul>
+<li><code>field</code>: The name of the field to filter on.</li>
+<li><code>op</code>: The operation to apply. Supported operations include <code>EQUAL</code>, <code>NOT_EQUAL</code>, <code>IN</code>, <code>NOT_IN</code>, <code>GTE</code>, <code>LTE</code>, etc.</li>
+<li><code>value</code>: The value to use for the operation.</li>
+</ul>
+<h2 id='response-structure'>Response Structure</h2><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smartphone"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">299</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Latest model with high-resolution camera"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>A successful search request returns a JSON object containing the following keys:</p>
+
+<ul>
+<li><code>results</code>: An array of matching documents.</li>
+<li><code>total</code>: Total number of documents matching the query.</li>
+<li><code>limit</code>: The <code>limit</code> value from the request.</li>
+<li><code>offset</code>: The <code>offset</code> value from the request.</li>
+</ul>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="ruby">ruby</a>
+                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="javascript">javascript</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
