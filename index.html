@@ -319,6 +319,17 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
+            <a href="#setup" class="toc-h1 toc-link" data-title="Setup">Setup</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#postgresql-credentials" class="toc-h2 toc-link" data-title="PostgreSQL Credentials">PostgreSQL Credentials</a>
+                  </li>
+                  <li>
+                    <a href="#firebase-credentials" class="toc-h2 toc-link" data-title="Firebase Credentials">Firebase Credentials</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
               <ul class="toc-list-h2">
                   <li>
@@ -352,6 +363,92 @@
 <p>Welcome to the Searchbase API documentation. Here, you will find all the information needed to integrate our powerful search functionalities into your applications. Our API supports a wide range of search capabilities, including full-text and semantic searches, to provide flexible and efficient search experiences.</p>
 
 <p>This documentation is intended for developers looking to integrate Searchbase&#39;s search capabilities into their applications and covers everything from authentication to making complex search queries.</p>
+<h1 id='setup'>Setup</h1>
+<p>When setting up your Searchbase account, you&#39;ll be asked to provide authentication specifications for your database, whether it&#39;s PostgreSQL or Firebase. These credentials are critical to ensure secure communication between Searchbase and your database, allowing for seamless search functionality within your application.</p>
+<h2 id='postgresql-credentials'>PostgreSQL Credentials</h2>
+<p>To securely access your PostgreSQL database, you&#39;ll need to create authentication credentials that grant limited, read-only access. This ensures that the Searchbase integration can query your data without risking unauthorized modifications.</p>
+<h3 id='steps-to-create-read-only-credentials-in-postgresql'>Steps to Create Read-Only Credentials in PostgreSQL</h3>
+<ol>
+<li><p><strong>Log into your PostgreSQL server</strong>: Use a PostgreSQL client or terminal. If you&#39;re using <code>psql</code>, you can connect with <code>psql -U username dbname</code>.</p></li>
+<li><p><strong>Create a read-only role</strong>: Execute the SQL command to create a new role. Replace <code>readonly_user</code> with your desired username.</p></li>
+</ol>
+<div class="highlight"><pre class="highlight sql tab-sql"><code>   <span class="k">CREATE</span> <span class="k">ROLE</span> <span class="n">readonly_user</span> <span class="k">WITH</span> <span class="n">LOGIN</span> <span class="n">PASSWORD</span> <span class="s1">'your_strong_password'</span><span class="p">;</span>
+</code></pre></div>
+<ol>
+<li><strong>Grant usage on your schema</strong>: Usually, the schema is <code>public</code>, but replace <code>your_schema</code> if you&#39;re using a different one.</li>
+</ol>
+<div class="highlight"><pre class="highlight sql tab-sql"><code>   <span class="k">GRANT</span> <span class="k">USAGE</span> <span class="k">ON</span> <span class="k">SCHEMA</span> <span class="n">your_schema</span> <span class="k">TO</span> <span class="n">readonly_user</span><span class="p">;</span>
+</code></pre></div>
+<ol>
+<li><strong>Grant select permission</strong>: This allows the read-only user to perform select queries.</li>
+</ol>
+<div class="highlight"><pre class="highlight sql tab-sql"><code>   <span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">ALL</span> <span class="n">TABLES</span> <span class="k">IN</span> <span class="k">SCHEMA</span> <span class="n">your_schema</span> <span class="k">TO</span> <span class="n">readonly_user</span><span class="p">;</span>
+</code></pre></div>
+<ol>
+<li><strong>Set default privileges</strong>: Ensure that future tables are also accessible to the read-only user.</li>
+</ol>
+<div class="highlight"><pre class="highlight sql tab-sql"><code>   <span class="k">ALTER</span> <span class="k">DEFAULT</span> <span class="k">PRIVILEGES</span> <span class="k">IN</span> <span class="k">SCHEMA</span> <span class="n">your_schema</span> <span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="n">TABLES</span> <span class="k">TO</span> <span class="n">readonly_user</span><span class="p">;</span>
+</code></pre></div><h3 id='steps-to-test-read-only-account'>Steps to Test Read-Only Account</h3>
+<p>After creating your read-only user, you can test it with this one-liner in your PostgreSQL client:</p>
+<div class="highlight"><pre class="highlight sh tab-shell"><code>psql <span class="s1">'dbname=your_database_name user=readonly_user password=your_strong_password host=your_database_host'</span> <span class="nt">-c</span> <span class="s1">'SELECT * FROM your_table LIMIT 1;'</span>
+</code></pre></div>
+<p>Replace <code>your_database_name</code>, <code>readonly_user</code>, <code>your_strong_password</code>, <code>your_database_host</code>, and <code>your_table</code> with your actual database name, read-only username, password, host, and a table name, respectively.</p>
+<h3 id='generating-connection-string'>Generating Connection String</h3>
+<p>Now you can compile your connection string like with this template:</p>
+
+<p><code>postgres://readonly_user:your_strong_password@your_database_host:5432/your_database_name</code></p>
+
+<p>Input this connection string on Searchbase when prompted under the Postgres connection string field.</p>
+<h3 id='using-the-credentials'>Using the Credentials</h3>
+<p>When integrating with Searchbase, ensure your application or service uses the <code>readonly_user</code> credentials. This provides Searchbase with the necessary permissions to perform search queries without the ability to alter the database.</p>
+<h2 id='firebase-credentials'>Firebase Credentials</h2>
+<p>For Firebase, creating a read-only access involves setting up a new role with restricted permissions in your Firebase project and generating a private key associated with that role.</p>
+<h3 id='creating-a-role-with-read-only-access'>Creating a Role with Read-Only Access</h3>
+<p>To set up Firebase, navigate to <code>cloud.google.com</code>, access <code>IAM &amp; Admin</code> from the left sidebar, and follow these steps:</p>
+
+<ol>
+<li><p>Click on <code>Roles</code>.</p></li>
+<li><p>Select <code>Create Role</code>.</p></li>
+<li><p>Name the role &quot;FirestoreReadAccess&quot;.</p></li>
+<li><p>Add the following permissions to the role:</p></li>
+</ol>
+
+<p>-   <code>datastore.databases.get</code>
+    -   <code>datastore.databases.getMetadata</code>
+    -   <code>datastore.databases.list</code>
+    -   <code>datastore.entities.get</code>
+    -   <code>datastore.entities.list</code>
+    -   <code>datastore.indexes.get</code>
+    -   <code>datastore.indexes.list</code>
+    -   <code>datastore.namespaces.get</code>
+    -   <code>datastore.namespaces.list</code>
+    -   <code>datastore.statistics.get</code>
+    -   <code>datastore.statistics.list</code></p>
+<h3 id='creating-a-service-account'>Creating a Service Account</h3>
+<p>Then, create a service account with this role:</p>
+
+<ol>
+<li> Go to <code>Service Accounts</code> in the sidebar.</li>
+<li> Click on <code>Create new service account</code>.</li>
+<li> Assign the &quot;FirestoreReadAccess&quot; role to this account.</li>
+</ol>
+<h3 id='downloading-the-service-account-key'>Downloading the Service Account Key</h3>
+<p>After creating the service account:</p>
+
+<ol>
+<li> Navigate to the service account you created.</li>
+<li> Click on <code>Keys</code>.</li>
+<li> Choose <code>Add Key</code>, then <code>Create new key</code>.</li>
+<li> Select <code>JSON</code> as the key type, which will prompt the download of the key file.</li>
+</ol>
+
+<p>Use this downloaded JSON key file to authenticate your Firebase instance with Searchbase by uploading it when prompted for Firebase credentials.</p>
+
+<p>After these steps, you&#39;ll be able to download a JSON file with your service account&#39;s credentials. Use these credentials in Searchbase by uploading the JSON file when prompted for Firebase credentials.</p>
+<h3 id='using-the-credentials-2'>Using the Credentials</h3>
+<p>In your application integration with Searchbase, use the service account JSON file to authenticate with Firebase. This setup ensures that Searchbase queries your Firebase database using the read-only permissions, safeguarding your data integrity.</p>
+
+<p>By following these steps, you create secure, read-only access credentials for both PostgreSQL and Firebase, allowing safe integration with the Searchbase API.</p>
 <h1 id='authentication'>Authentication</h1><h2 id='obtaining-your-api-token'>Obtaining Your API Token</h2>
 <p>Before you can start using the Searchbase API, you need to obtain an API token. This token is necessary for all your API requests to be authenticated and authorized.</p>
 <h3 id='steps-to-obtain-an-api-token'>Steps to Obtain an API Token</h3>
